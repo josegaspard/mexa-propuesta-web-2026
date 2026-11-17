@@ -1,0 +1,117 @@
+/* MEXA Arquitectos · home.css (solo index.html) */
+
+/* héroe */
+.heroe{position:relative;min-height:calc(100svh - var(--cabecera));display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--canal);align-items:end;padding-block:var(--e4) var(--e6)}
+.heroe__texto{grid-column:1/span 7;grid-row:1;position:relative;z-index:2;align-self:end}
+.heroe__texto h1{font-size:clamp(2rem,.9rem + 4.1vw,5.25rem)}
+.heroe__texto .entrada{margin-top:var(--e4);max-width:27em}
+.heroe__acciones{display:flex;flex-wrap:wrap;align-items:center;gap:var(--e2) var(--e4);margin-top:var(--e4)}
+.heroe__maqueta{grid-column:6/-1;grid-row:1;align-self:center;justify-self:end;position:relative;width:min(100%,90svh - var(--cabecera));aspect-ratio:1;margin-right:calc(var(--margen)*-.5)}
+.maqueta__lienzo,.maqueta__respaldo{position:absolute;inset:0;width:100%;height:100%}
+.maqueta__lienzo canvas{width:100%!important;height:100%!important;opacity:0;transition:opacity 500ms ease}
+.maqueta__lienzo.is-lista canvas{opacity:1}
+.maqueta__respaldo{object-fit:contain;opacity:0}
+.heroe__maqueta.sin-webgl .maqueta__respaldo{opacity:1}
+.heroe__maqueta.sin-webgl .maqueta__lienzo{display:none}
+@media (max-width:1100px){
+  .heroe__texto{grid-column:1/span 8}
+  .heroe__maqueta{grid-column:5/-1;opacity:.95}
+}
+@media (max-width:820px){
+  .heroe{min-height:0;padding-top:0;align-items:start}
+  .heroe{padding-bottom:var(--e5)}
+  .heroe__maqueta{grid-column:1/-1;grid-row:1;justify-self:center;width:min(100%,58svh);margin:calc(var(--e2)*-1) 0 0}
+  .heroe__texto{grid-column:1/-1;grid-row:2;margin-top:calc(var(--e3)*-1)}
+}
+
+/* foto de apertura a sangre */
+.apertura .media{--ar:2/1}
+.apertura figcaption{display:grid;row-gap:.15rem;padding-top:var(--e2)}
+.apertura figcaption .meta,.proyecto__pie .meta{font-size:var(--t-m)}
+@media (max-width:820px){.apertura .media{--ar:4/3}}
+
+/* proyectos destacados */
+.destacados__cabeza{align-items:end;row-gap:var(--e3);margin-bottom:var(--e6)}
+.destacados__cabeza h2{grid-column:1/span 7}
+.destacados__cabeza p{grid-column:9/-1}
+.destacados__lista{row-gap:var(--e7);align-items:start}
+.proyecto{display:block}
+.proyecto .media{transition:transform 700ms var(--salida)}
+.proyecto__pie{display:grid;grid-template-columns:minmax(0,1fr);justify-items:start;row-gap:.15rem;padding-top:var(--e2)}
+.proyecto__pie .nombre{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size 500ms var(--salida)}
+@media (hover:hover) and (pointer:fine){
+  .proyecto:hover .media{transform:scale(.985)}
+  .proyecto:hover .nombre{background-size:100% 1px}
+}
+.proyecto:active .media{transform:scale(.975)}
+.p-a{grid-column:1/span 5}
+.p-b{grid-column:7/-1;margin-top:var(--e8)}
+.p-c{grid-column:2/span 7}
+.p-d{grid-column:10/-1;margin-top:var(--e7)}
+.p-e{grid-column:1/span 6}
+.destacados__todos{grid-column:8/-1;align-self:end;padding-bottom:var(--e5)}
+.destacados__todos .titulo-xl{display:block;margin-bottom:var(--e3)}
+@media (max-width:820px){
+  .destacados__cabeza h2,.destacados__cabeza p{grid-column:1/-1}
+  .destacados__lista{row-gap:var(--e6)}
+  .p-a{grid-column:1/span 10}
+  .p-b{grid-column:1/-1;margin-top:0}
+  .p-c{grid-column:1/-1}
+  .p-d{grid-column:4/-1;margin-top:0}
+  .p-e{grid-column:1/-1}
+  .destacados__todos{grid-column:1/-1;padding-bottom:0}
+}
+
+/* despacho */
+.despacho{row-gap:var(--e5);align-items:start}
+.despacho__foto{grid-column:1/span 5;position:sticky;top:calc(var(--cabecera) + var(--e4))}
+.despacho__foto .media{--ar:4/5}
+.despacho__texto{grid-column:7/-1}
+.despacho__texto h2{margin-bottom:var(--e4)}
+.despacho__texto .texto{margin-top:var(--e3);color:var(--piedra)}
+.despacho__texto .boton{margin-top:var(--e4)}
+.sedes{display:grid;gap:var(--e2);margin-top:var(--e5);padding-top:var(--e3);border-top:1px solid var(--linea)}
+.sedes div{display:grid;grid-template-columns:7.5rem 1fr;align-items:baseline;column-gap:var(--e2)}
+.sedes dt{font-size:var(--t-s);color:var(--piedra)}
+.sedes dd{font-stretch:125%;font-weight:500;font-size:var(--t-l);letter-spacing:-.015em;line-height:1.15;margin-top:.2rem}
+@media (max-width:1000px){
+  .despacho__foto,.despacho__texto{grid-column:1/-1;position:static}
+  .despacho__foto .media{--ar:4/3}
+}
+@media (max-width:420px){.sedes div{grid-template-columns:1fr}}
+
+/* qué hacemos */
+.oficio__cabeza{row-gap:var(--e3);margin-bottom:var(--e5)}
+.oficio__cabeza h2{grid-column:1/span 8}
+.oficio__fila{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--canal);row-gap:.4rem;padding-block:var(--e3);border-top:1px solid var(--linea)}
+.oficio__fila:last-child{border-bottom:1px solid var(--linea)}
+.oficio__fila dt{grid-column:1/span 5}
+.oficio__fila dd{grid-column:7/-1;max-width:44ch;color:var(--piedra)}
+.oficio__tipos{margin-top:var(--e4);max-width:60ch}
+@media (max-width:820px){
+  .oficio__cabeza h2,.oficio__fila dt,.oficio__fila dd{grid-column:1/-1}
+}
+
+/* reconocimientos */
+.premios__cabeza{margin-bottom:var(--e5)}
+.premio{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--canal);row-gap:.5rem;align-items:baseline;padding-block:var(--e3);border-top:1px solid var(--linea)}
+.premio:last-child{border-bottom:1px solid var(--linea)}
+.premio__anio{grid-column:1/span 2;font-stretch:125%;font-weight:500}
+.premio__texto{grid-column:3/span 7}
+.premio__texto .titulo-l{display:block}
+.premio__texto .meta{display:block;margin-top:.35rem}
+.premio__enlaces{grid-column:10/-1;display:flex;flex-wrap:wrap;gap:0 var(--e3);justify-content:flex-end;font-size:var(--t-s)}
+@media (max-width:820px){
+  .premio__anio,.premio__texto,.premio__enlaces{grid-column:1/-1;justify-content:flex-start}
+}
+
+/* llamada a contacto */
+.llamada{padding-block:var(--e8) var(--e7)}
+.llamada__in{row-gap:var(--e5);align-items:end}
+.llamada h2{grid-column:1/span 8}
+.llamada__datos{grid-column:8/-1;display:grid;gap:.15rem;justify-items:start}
+.llamada__datos a{display:inline-flex;align-items:center;min-height:44px}
+.llamada__datos .boton{margin-top:var(--e3)}
+.llamada__correo{font-size:clamp(.9375rem,.42rem + 2.3vw,1.5rem);font-stretch:100%;font-weight:500;letter-spacing:-.01em;white-space:nowrap}
+.llamada__datos a[href^="tel:"]{white-space:nowrap}
+@media (max-width:1000px){.llamada h2,.llamada__datos{grid-column:1/-1}}

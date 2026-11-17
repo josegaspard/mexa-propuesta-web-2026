@@ -1,0 +1,197 @@
+/* MEXA Arquitectos · paginas.css (estudio/index.html y contacto/index.html)
+   Se apoya en base.css. Filas, reconocimientos y llamada repiten el patrón de home.css. */
+
+:root{--error:#A3271B;--borde-campo:#8C857C}
+
+/* ---------- portada de página ---------- */
+.portada{row-gap:var(--e5);padding-block:var(--e6) var(--e7);align-items:end}
+.portada h1{grid-column:1/-1}
+.portada__entrada{grid-column:1/span 7}
+.portada__ficha{grid-column:9/-1}
+.portada--contacto{padding-bottom:var(--e6)}
+@media (max-width:1000px){.portada__entrada,.portada__ficha{grid-column:1/-1}}
+
+/* ficha de datos */
+.ficha{display:grid;gap:var(--e2);padding-top:var(--e3);border-top:1px solid var(--linea)}
+.ficha div{display:grid;grid-template-columns:7.5rem 1fr;align-items:baseline;column-gap:var(--e2)}
+.ficha dt{font-size:var(--t-s);color:var(--piedra)}
+.ficha dd{font-stretch:125%;font-weight:500;font-size:1.125rem;letter-spacing:-.012em;line-height:1.2}
+@media (max-width:420px){.ficha div{grid-template-columns:1fr}.ficha dd{margin-top:.15rem}}
+
+/* ---------- dos fotos de anchos desiguales ---------- */
+.dupla{row-gap:var(--e5);align-items:start}
+.dupla figcaption,.filosofia__dibujo figcaption{padding-top:var(--e2)}
+.dupla__a{grid-column:1/span 8}
+.dupla__b{grid-column:10/-1;margin-top:var(--e8)}
+@media (max-width:820px){
+  .dupla__a{grid-column:1/-1}
+  .dupla__b{grid-column:5/-1;margin-top:0}
+}
+
+/* ---------- lo que buscamos ---------- */
+.filosofia{row-gap:var(--e4);align-items:end}
+.filosofia__rotulo{grid-column:1/-1}
+.filosofia__frase{grid-column:1/span 10}
+.filosofia__dibujo{grid-column:1/span 5;margin-top:var(--e5)}
+.filosofia__dibujo .media{background:var(--blanco)}
+.filosofia__dibujo .media img{object-fit:cover;transform:scale(1.03)}
+.filosofia__texto{grid-column:8/-1;color:var(--piedra);padding-bottom:var(--e5)}
+@media (max-width:820px){
+  .filosofia__frase,.filosofia__dibujo,.filosofia__texto{grid-column:1/-1}
+  .filosofia__texto{padding-bottom:0}
+}
+
+/* ---------- cabeceras de sección ---------- */
+.cabeza{row-gap:var(--e3);margin-bottom:var(--e5);align-items:end}
+.cabeza h2{grid-column:1/span 8}
+.cabeza--doble p{grid-column:10/-1}
+@media (max-width:820px){.cabeza h2,.cabeza--doble p{grid-column:1/-1}}
+
+/* ---------- proceso: el dibujo se traza con el scroll ---------- */
+.proceso__cabeza{row-gap:var(--e3);margin-bottom:var(--e6);align-items:end}
+.proceso__cabeza h2{grid-column:1/span 7}
+.proceso__cabeza p{grid-column:9/-1;max-width:44ch}
+.proceso__cuerpo{align-items:start;row-gap:var(--e3)}
+.proceso__dibujo{grid-column:1/span 7;position:sticky;top:calc(var(--cabecera) + var(--e2));z-index:1;background:var(--blanco);overflow:hidden}
+.trazo{width:100%;height:auto;max-height:calc(100svh - var(--cabecera) - var(--e5));overflow:visible}
+.trazo path{fill:none;stroke:var(--tinta);stroke-width:1.5;stroke-linejoin:round;stroke-linecap:butt;stroke-dasharray:1}
+.trazo .cara{fill:var(--blanco)}
+.trazo .guia{stroke:var(--arena);stroke-width:1.25}
+.proceso__etapas{grid-column:9/-1;position:relative;padding-left:var(--e4)}
+.proceso__etapas::before,.proceso__etapas::after{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--linea)}
+.proceso__etapas::after{background:var(--tinta);transform-origin:0 0;transform:scaleY(var(--avance,1))}
+.etapa{min-height:38svh;padding-bottom:var(--e5);transition:opacity 500ms ease}
+.etapa:last-child{min-height:0;padding-bottom:var(--e2)}
+.etapa__rotulo{display:block;margin-bottom:.5rem}
+.etapa p{margin-top:.6rem;color:var(--piedra);max-width:34ch}
+.proceso.is-vivo .etapa{opacity:.38}
+.proceso.is-vivo .etapa.is-activa{opacity:1}
+@media (max-width:820px){
+  .proceso__cabeza h2,.proceso__cabeza p{grid-column:1/-1}
+  .proceso__cabeza{margin-bottom:var(--e4)}
+  .proceso__dibujo{grid-column:1/-1;top:0;margin-inline:calc(var(--margen)*-1);padding:var(--e2) var(--margen) var(--e1);border-bottom:1px solid var(--linea)}
+  .trazo{max-height:42svh}
+  .proceso__etapas{grid-column:1/-1;margin-top:var(--e3);padding-left:var(--e3)}
+  .etapa{min-height:30svh}
+}
+
+/* ---------- filas con filete (qué hacemos) ---------- */
+.fila{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--canal);row-gap:.4rem;padding-block:var(--e3);border-top:1px solid var(--linea)}
+.fila:last-child{border-bottom:1px solid var(--linea)}
+.fila dt{grid-column:1/span 5}
+.fila dd{grid-column:7/-1;max-width:44ch;color:var(--piedra)}
+.tipos{margin-top:var(--e5)}
+.tipos ul{display:flex;flex-wrap:wrap;gap:.35rem var(--e4);margin-block:var(--e1) var(--e4)}
+.tipos li{font-stretch:125%;font-weight:500;font-size:var(--t-l);letter-spacing:-.015em;line-height:1.2}
+@media (max-width:820px){.fila dt,.fila dd{grid-column:1/-1}}
+
+/* ---------- mapa ---------- */
+.mapa{position:relative}
+.mapa svg{width:100%;height:auto;overflow:visible}
+.mapa__pais{fill:none;stroke:var(--arena);stroke-width:1.5;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.mapa__punto{fill:var(--arena)}
+.mapa__enlace{fill:none;stroke:var(--tinta);stroke-width:1.5;stroke-dasharray:1}
+.mapa__marca{position:absolute;width:11px;height:11px;margin:-5.5px 0 0 -5.5px;background:var(--tinta)}
+.mapa__nombre{position:absolute;white-space:nowrap;font-stretch:125%;font-weight:500;font-size:clamp(.875rem,.75rem + .45vw,1.0625rem);letter-spacing:-.01em;line-height:1.1;background:var(--blanco);padding:.15rem .3rem}
+.mapa__marca--cdmx .mapa__nombre{top:calc(100% + 1.15rem);left:50%;transform:translateX(-50%)}
+.mapa__marca--merida .mapa__nombre{bottom:calc(100% + .5rem);right:-.3rem}
+.mapa__pie{margin-top:var(--e3);max-width:62ch}
+.sedes-mapa{margin-bottom:var(--e7)}
+.sedes-mapa__mapa{grid-column:4/span 6}
+@media (max-width:820px){.sedes-mapa__mapa{grid-column:1/-1}}
+
+/* ---------- las dos bases ---------- */
+.bases{row-gap:var(--e6);align-items:start}
+.base--cdmx{grid-column:1/span 4}
+.base--merida{grid-column:6/-1;margin-top:var(--e7)}
+.base>a:first-child{display:block}
+.base__pie{padding-top:var(--e2)}
+.base h3{margin-top:var(--e4)}
+.base__lista{margin-top:var(--e2);border-bottom:1px solid var(--linea)}
+.base__lista li{border-top:1px solid var(--linea)}
+.base__enlace{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;column-gap:var(--e3);min-height:44px;padding-block:.7rem}
+.base__enlace .meta{white-space:nowrap}
+.base__nombre{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.22em;text-decoration-color:transparent;transition:text-decoration-color var(--d-ui) ease}
+.base__enlace:active .base__nombre{text-decoration-color:currentColor}
+@media (hover:hover) and (pointer:fine){.base__enlace:hover .base__nombre{text-decoration-color:currentColor}}
+@media (max-width:820px){
+  .base--cdmx{grid-column:1/span 10}
+  .base--merida{grid-column:1/-1;margin-top:0}
+}
+
+/* ---------- reconocimientos ---------- */
+.premio{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--canal);row-gap:.5rem;align-items:baseline;padding-block:var(--e3);border-top:1px solid var(--linea)}
+.premio:last-child{border-bottom:1px solid var(--linea)}
+.premio__anio{grid-column:1/span 2;font-stretch:125%;font-weight:500}
+.premio__texto{grid-column:3/span 7}
+.premio__texto .titulo-l{display:block}
+.premio__texto .meta{display:block;margin-top:.35rem}
+.premio__enlaces{grid-column:10/-1;display:flex;flex-wrap:wrap;gap:0 var(--e3);justify-content:flex-end;font-size:var(--t-s)}
+@media (max-width:820px){.premio__anio,.premio__texto,.premio__enlaces{grid-column:1/-1;justify-content:flex-start}}
+
+/* ---------- llamada a contacto ---------- */
+.llamada{padding-block:var(--e8) var(--e7)}
+.llamada__in{row-gap:var(--e5);align-items:end}
+.llamada h2{grid-column:1/span 8}
+.llamada__datos{grid-column:8/-1;display:grid;gap:.15rem;justify-items:start}
+.llamada__datos a{display:inline-flex;align-items:center;min-height:44px}
+.llamada__datos .boton{margin-top:var(--e3)}
+.llamada__correo{font-size:clamp(.9375rem,.42rem + 2.3vw,1.5rem);font-stretch:100%;font-weight:500;letter-spacing:-.01em;white-space:nowrap}
+.llamada__datos a[href^="tel:"]{white-space:nowrap}
+@media (max-width:1000px){.llamada h2,.llamada__datos{grid-column:1/-1}}
+
+/* ---------- contacto ---------- */
+.contacto{row-gap:var(--e6);align-items:start;padding-bottom:var(--e7)}
+.formulario{grid-column:1/span 7;padding-top:var(--e3);border-top:1px solid var(--tinta)}
+.formulario__titulo{margin-bottom:var(--e4)}
+.formulario__campos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--e3) var(--canal)}
+.campo{grid-column:1/-1;min-width:0}
+.campo--mitad{grid-column:span 1}
+.campo label{display:block;margin-bottom:.5rem;font-size:var(--t-s);font-weight:500}
+.campo__opcional{margin-left:.35em;font-weight:400;color:var(--piedra)}
+.campo input,.campo select,.campo textarea{display:block;width:100%;min-height:3.25rem;padding:.8rem 1rem;border:1px solid var(--borde-campo);border-radius:0;background:var(--blanco);color:var(--tinta);
+  font:inherit;font-size:1.0625rem;line-height:1.4;-webkit-appearance:none;appearance:none;transition:border-color var(--d-ui) ease,box-shadow var(--d-ui) ease}
+.campo textarea{min-height:10rem;resize:vertical}
+.campo select{padding-right:2.75rem;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M2 5.5l6 6 6-6' fill='none' stroke='%2317140F' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;background-size:1rem}
+.campo select:invalid,.campo select.is-vacio{color:var(--piedra)}
+@media (hover:hover) and (pointer:fine){.campo input:hover,.campo select:hover,.campo textarea:hover{border-color:var(--tinta)}}
+.campo input:focus,.campo select:focus,.campo textarea:focus{border-color:var(--tinta);box-shadow:inset 0 0 0 1px var(--tinta);outline:2px solid var(--barro);outline-offset:3px}
+.campo [aria-invalid="true"]{border-color:var(--error);box-shadow:inset 0 0 0 1px var(--error)}
+.campo [aria-invalid="true"]:focus{border-color:var(--error);box-shadow:inset 0 0 0 1px var(--error);outline-color:var(--error)}
+.campo__ayuda{margin-top:.45rem;font-size:var(--t-s);line-height:1.4;color:var(--piedra)}
+.campo__error{margin-top:.45rem;padding-left:.65rem;border-left:2px solid var(--error);font-size:var(--t-s);line-height:1.4;font-weight:500;color:var(--error)}
+.formulario__resumen{margin-bottom:var(--e4);padding:var(--e2) var(--e3);border:1px solid var(--error);color:var(--error)}
+.formulario__resumen p{font-weight:500}
+.formulario__resumen a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:.2em}
+.formulario__pie{display:flex;flex-wrap:wrap;align-items:center;gap:var(--e2) var(--e4);margin-top:var(--e4)}
+.formulario__pie .meta{flex:1 1 18rem;max-width:46ch}
+.formulario__listo{margin-top:var(--e5);padding-top:var(--e4);border-top:1px solid var(--tinta)}
+.formulario__listo>p{margin-top:var(--e1);max-width:52ch}
+.formulario__acciones{display:flex;flex-wrap:wrap;gap:var(--e2);margin-top:var(--e3)}
+.formulario__acciones+.meta{min-height:1.4em;margin-top:var(--e1)}
+.formulario__texto{margin:var(--e2) 0 0;padding:var(--e3);border:1px solid var(--linea);font-family:inherit;font-size:var(--t-s);line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere;max-height:18rem;overflow:auto}
+.directo{grid-column:9/-1;position:sticky;top:calc(var(--cabecera) + var(--e4));display:grid;gap:var(--e3);justify-items:start;padding-top:var(--e3);border-top:1px solid var(--linea)}
+.directo__correo{display:inline-flex;align-items:center;min-height:44px;font-weight:500;font-size:clamp(.9375rem,.5rem + 2vw,1.25rem);letter-spacing:-.01em;line-height:1.2;white-space:nowrap}
+.directo .ficha dd a{white-space:nowrap}
+.directo .ficha{width:100%}
+.directo .ficha div{grid-template-columns:1fr;row-gap:0}
+.directo .ficha dd a{display:inline-flex;align-items:center;min-height:44px}
+.directo__redes{display:flex;flex-wrap:wrap;gap:0 var(--e4)}
+@media (max-width:1000px){
+  .formulario,.directo{grid-column:1/-1;position:static}
+  .directo{order:-1}
+}
+@media (max-width:640px){
+  .campo--mitad{grid-column:1/-1}
+  .formulario__pie .boton,.formulario__acciones .boton{width:100%}
+}
+
+/* dónde estamos (contacto) */
+.donde .rejilla{row-gap:var(--e5);align-items:center}
+.donde__texto{grid-column:1/span 5;display:grid;gap:var(--e3);justify-items:start}
+.donde__mapa{grid-column:7/-1}
+@media (max-width:820px){.donde__texto,.donde__mapa{grid-column:1/-1}}
+
+@media (prefers-reduced-motion:reduce){
+  .proceso.is-vivo .etapa{opacity:1}
+}
